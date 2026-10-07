@@ -13,7 +13,7 @@
  * 🛠️ RETO (responde con código, no con texto):
  *  1. En `calcularValor`: ¿qué operación aplicas al subir? ¿y al bajar? ¿cómo evitas
  *     salirte de `minimo`/`maximo`?
- *  2. En `estadoUIw`: ¿cuándo el contador está en un extremo? ¿y cuándo no?
+ *  2. En `estadoUI`: ¿cuándo el contador está en un extremo? ¿y cuándo no?
  *  3. Ejecuta en tu terminal: `pnpm run start:01`
  */
 
@@ -52,8 +52,14 @@ export interface ContadorConfig {
  * calcularValor({ valor: 5, paso: 1, minimo: 0, maximo: 10 }, 'incrementar');
  */
 export function calcularValor(config: ContadorConfig, direccion: Direccion): number {
-  // 👇 TODO: reemplaza este return por tu lógica de cálculo
-  return config.valor;
+  // Subir suma `paso`; bajar lo resta.
+  const siguiente =
+    direccion === 'incrementar'
+      ? config.valor + config.paso
+      : config.valor - config.paso;
+
+  // Clamping: nunca bajar de `minimo` ni pasar de `maximo`.
+  return Math.min(config.maximo, Math.max(config.minimo, siguiente));
 }
 
 /**
@@ -65,6 +71,7 @@ export function calcularValor(config: ContadorConfig, direccion: Direccion): num
  *          `'IDLE'` en cualquier otro caso.
  */
 export function estadoUI(valor: number, config: ContadorConfig): EstadoUI {
-  // 👇 TODO: reemplaza este return por tu lógica de unión discriminada
+  if (valor <= config.minimo) return 'MINIMO';
+  if (valor >= config.maximo) return 'MAXIMO';
   return 'IDLE';
 }
