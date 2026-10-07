@@ -13,7 +13,7 @@
  * 🛠️ RETO (responde con código, no con texto):
  *  1. En `calcularValor`: ¿qué operación aplicas al subir? ¿y al bajar? ¿cómo evitas
  *     salirte de `minimo`/`maximo`?
- *  2. En `estadoUI`: ¿cuándo el contador está en un extremo? ¿y cuándo no?
+ *  2. En `estadoUIw`: ¿cuándo el contador está en un extremo? ¿y cuándo no?
  *  3. Ejecuta en tu terminal: `pnpm run start:01`
  */
 
